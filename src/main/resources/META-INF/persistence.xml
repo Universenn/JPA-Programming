@@ -12,12 +12,12 @@
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>-->
-<!--            mysql -->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/> mysql, oracle... sql문에 맞는 방언을 찾아 넣어준다.-->
             <!-- 옵션 -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
+<!--            <property name="hibernate.jdbc.batch_size" value="10"/> 쿼리문 10개 가 모이면 한번에 보내라 -->
             <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
         </properties>
     </persistence-unit>
