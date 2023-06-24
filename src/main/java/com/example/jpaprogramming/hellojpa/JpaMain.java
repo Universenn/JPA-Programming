@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -19,29 +18,16 @@ public class JpaMain {
         tx.begin();
 
         try {
+//             비영속 상태
+            Member memberA = em.find(Member.class, 200L);
+            memberA.setName("주완200");
 
-            // JPQL 로 MemberList 조회 하기
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-//                    .setFirstResult(5)
-//                    .setMaxResults(8)
-                    .getResultList();
-
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
-
-//            Member findMember = em.find(Member.class, 1L);
-
-            // 수정
-            // 저장을 하지 않았는데 (em.persist(findMember);) 왜 저장이 될까?
-            // JPA를 통해 엔티티를(Member.class) 가지고 오면 JPA가 엔티티를 관리해서 변경이 되었으면 알아서 업데이트 문을 날려준다.
-//            findMember.setName("juwan");
-
-            // 삭재
-//            em.remove(findMember);
+            em.flush();
+            System.out.println("===========================");
 
             tx.commit();
         } catch (Exception e) {
+            System.out.println("rollback");
             tx.rollback();
         }finally {
             em.clear();
