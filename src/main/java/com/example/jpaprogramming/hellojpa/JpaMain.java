@@ -18,13 +18,9 @@ public class JpaMain {
         tx.begin();
 
         try {
-//             비영속 상태
-            Member memberA = em.find(Member.class, 200L);
-            memberA.setName("주완200");
-
-            em.flush();
-            System.out.println("===========================");
-
+            Member member = new Member(4L, "yeezi", RoleType.USER);
+//            Member member = new Member(1L, "woo", RoleType.USER);
+            em.persist(member);
             tx.commit();
         } catch (Exception e) {
             System.out.println("rollback");
