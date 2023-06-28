@@ -4,7 +4,10 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <persistence-unit name="hello">
 
-        <class>com.example.jpaprogramming.hellojpa.Member</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>
 
         <properties>
             <!-- 필수 속성 -->
@@ -21,7 +24,7 @@
 
             <!--            쿼리문 10개 가 모이면 한번에 보내라 -->
             <property name="hibernate.jdbc.batch_size" value="10"/>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>
