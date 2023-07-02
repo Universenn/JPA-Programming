@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -22,38 +21,15 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team("TeamA");
+//            Order order = new Order();
+//            order.addOrderItem(new OrderItem());
+            Member member = new Member();
+            member.setUsername("member1");
+            em.persist(member);
+
+            Team team = new Team("team1");
+            team.getMembers().add(member);
             em.persist(team);
-
-            Member member1 = new Member("Member1",team); // 연관관계 주인은 후보를 가지고 있어야 한다.
-            em.persist(member1);
-
-            Member member2 = new Member("Member2", team);
-            Member member3 = new Member("Member3", team);
-            Member member4 = new Member("Member4", team);
-            Member member5 = new Member("Member5", team);
-            em.persist(member2);
-            em.persist(member3);
-            em.persist(member4);
-            em.persist(member5);
-
-//            team.getMembers().add(member1);
-//            team.getMembers().add(member2);
-//            team.getMembers().add(member3);
-//            team.getMembers().add(member4);
-//            team.getMembers().add(member5);
-
-//            em.flush();
-//            em.clear(); //영속성 컨텍스트를 끝낸다. 1차 캐시에 아무것도 없는 상태가 된다
-
-            // 여기서 부터 영속성 컨택스트에서 가져온게 아니라 DB 에서 가져 온다.
-            Team findMember = em.find(Team.class, team.getId());
-            List<Member> members = findMember.getMembers();
-
-            for (Member m : members) {
-                System.out.println("m = "+ m.getUsername());
-            }
-            
 
             tx.commit();
         } catch (Exception e) {
