@@ -1,5 +1,6 @@
 package com.example.jpaprogramming.hellojpa;
 
+import com.example.jpaprogramming.hellojpa.domain2.Locker;
 import com.example.jpaprogramming.hellojpa.domain2.Member;
 import com.example.jpaprogramming.hellojpa.domain2.Team;
 
@@ -21,15 +22,13 @@ public class JpaMain {
         tx.begin();
 
         try {
-//            Order order = new Order();
-//            order.addOrderItem(new OrderItem());
+            Locker locker = new Locker("Locker1");
+            em.persist(locker);
+
             Member member = new Member();
             member.setUsername("member1");
+            member.setLocker(locker);
             em.persist(member);
-
-            Team team = new Team("team1");
-            team.getMembers().add(member);
-            em.persist(team);
 
             tx.commit();
         } catch (Exception e) {
