@@ -1,9 +1,5 @@
 package com.example.jpaprogramming.hellojpa;
 
-import com.example.jpaprogramming.hellojpa.domain2.Locker;
-import com.example.jpaprogramming.hellojpa.domain2.Member;
-import com.example.jpaprogramming.hellojpa.domain2.Team;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -22,13 +18,9 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Locker locker = new Locker("Locker1");
-            em.persist(locker);
-
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setLocker(locker);
-            em.persist(member);
+//            Member member = new Member();
+//            member.setUsername("member1");
+//            member.setProduct();
 
             tx.commit();
         } catch (Exception e) {
