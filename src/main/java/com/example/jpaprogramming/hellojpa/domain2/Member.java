@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,8 +21,7 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID",  unique = true)
-    private Locker locker;
-
+    @ManyToMany
+    @JoinColumn(name = "PRODUCT_ID")
+    private List<Product> products = new ArrayList<>();
 }
