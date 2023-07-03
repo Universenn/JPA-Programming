@@ -4,18 +4,27 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <persistence-unit name="hello">
 
-        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Delivery</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Category</class>
+
+<!--        domain-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Delivery</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Category</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain.CategoryItem</class>-->
 
-<!--        <class>com.example.jpaprogramming.hellojpa.domain2.Member</class>-->
+<!--        domain@-->
+        <!--        <class>com.example.jpaprogramming.hellojpa.domain2.Member</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain2.Team</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain2.Locker</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain2.Product</class>-->
+
+<!--        domain3-->
+        <class>com.example.jpaprogramming.hellojpa.domain3.Album</class>
+        <class>com.example.jpaprogramming.hellojpa.domain3.Book</class>
+        <class>com.example.jpaprogramming.hellojpa.domain3.Item</class>
+        <class>com.example.jpaprogramming.hellojpa.domain3.Movie</class>
 
         <properties>
             <!-- 필수 속성 -->

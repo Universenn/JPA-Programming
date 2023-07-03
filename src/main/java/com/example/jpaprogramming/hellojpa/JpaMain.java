@@ -1,5 +1,8 @@
 package com.example.jpaprogramming.hellojpa;
 
+import com.example.jpaprogramming.hellojpa.domain3.Movie;
+import org.springframework.ui.Model;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,9 +21,18 @@ public class JpaMain {
         tx.begin();
 
         try {
-//            Member member = new Member();
-//            member.setUsername("member1");
-//            member.setProduct();
+
+            Movie movie = new Movie();
+            movie.setDirector("directory1");
+            movie.setActor("actor1");
+            movie.setName("JPA");
+            movie.setPrice(50000);
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            Movie movie1 = em.find(Movie.class, movie.getId());
 
             tx.commit();
         } catch (Exception e) {
