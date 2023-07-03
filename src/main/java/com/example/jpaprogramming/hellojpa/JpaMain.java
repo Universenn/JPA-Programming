@@ -1,7 +1,7 @@
 package com.example.jpaprogramming.hellojpa;
 
+import com.example.jpaprogramming.hellojpa.domain3.Item;
 import com.example.jpaprogramming.hellojpa.domain3.Movie;
-import org.springframework.ui.Model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,7 +32,8 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            Movie movie1 = em.find(Movie.class, movie.getId());
+            Item findItem = em.find(Item.class, movie.getId());
+            System.out.println("findItem : "+findItem);
 
             tx.commit();
         } catch (Exception e) {
