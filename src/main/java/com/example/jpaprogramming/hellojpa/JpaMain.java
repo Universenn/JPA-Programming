@@ -2,6 +2,8 @@ package com.example.jpaprogramming.hellojpa;
 
 import com.example.jpaprogramming.hellojpa.domain2.Member;
 import com.example.jpaprogramming.hellojpa.domain2.Team;
+import com.example.jpaprogramming.hellojpa.domian4.Child;
+import com.example.jpaprogramming.hellojpa.domian4.Parent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,33 +24,30 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team("Team1");
-            em.persist(team);
 
-            Team team2 = new Team("Team2");
-            em.persist(team2);
 
-            Member member1 = new Member();
-            member1.setUsername("juwan");
-            member1.setTeam(team);
-            em.persist(member1);
+            Child child = new Child();
+            child.setName("juwan");
+            Child child2 = new Child();
+            child2.setName("yeezi");
+            Parent parent = new Parent();
+            parent.setName("parent1");
+            Parent parent2 = new Parent();
+            parent2.setName("parent2");
+            parent.addChild(child);
+            parent.addChild(child2);
+            em.persist(child);
+            em.persist(child2);
+            em.persist(parent2);
 
-            Member member2 = new Member();
-            member2.setUsername("juwan2");
-            member2.setTeam(team2);
-            em.persist(member2);
+            em.persist(parent);
 
             em.flush();
             em.clear();
 
-//            Member findMember1 = em.find(Member.class, member1.getId());
-
-//            List<Member> members = em.createQuery("select m from Member m", Member.class)
-//                    .getResultList();
-
-            // join fetch 를 이용해 N+1문제 해결
-            List<Member> members = em.createQuery("select m from Member m join fetch m.team", Member.class)
-                    .getResultList();
+            Parent findParent = em.find(Parent.class, parent.getId());
+            em.remove(findParent);
+//            findParent.getChildList().remove(0);
 
             tx.commit();
         } catch (Exception e) {
