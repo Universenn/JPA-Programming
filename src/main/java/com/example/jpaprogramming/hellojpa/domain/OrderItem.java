@@ -1,6 +1,7 @@
 package com.example.jpaprogramming.hellojpa.domain;
 
 
+import com.example.jpaprogramming.hellojpa.domain.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class OrderItem {
+public class OrderItem extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDERITEM_ID")
     private Long id;
@@ -17,10 +18,6 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "ORDER_ID")
     private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "ITEM_ID")
-    private Item item;
 
     private int orderPrice;
     private int count;

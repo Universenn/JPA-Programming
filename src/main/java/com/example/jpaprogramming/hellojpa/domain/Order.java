@@ -1,5 +1,6 @@
 package com.example.jpaprogramming.hellojpa.domain;
 
+import com.example.jpaprogramming.hellojpa.domain.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 @Getter@Setter
-public class Order {
+public class Order extends BaseEntity {
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;

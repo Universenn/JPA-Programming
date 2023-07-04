@@ -1,18 +1,18 @@
 package com.example.jpaprogramming.hellojpa.domain;
 
+import com.example.jpaprogramming.hellojpa.domain.common.BaseEntity;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-public class Item {
+//@NoArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ITEM_ID")
@@ -21,16 +21,4 @@ public class Item {
     private int price;
     private int stockQuantity;
 
-//    @OneToMany(mappedBy = "item")
-//    private List<CategoryItem> categoryItems = new ArrayList<>();
-
-
-    @ManyToMany(mappedBy = "items")
-    private List<Category> categories = new ArrayList<>();
-
-    public Item(String name, int price, int stockQuantity) {
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
 }

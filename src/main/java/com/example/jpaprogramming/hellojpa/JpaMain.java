@@ -1,7 +1,6 @@
 package com.example.jpaprogramming.hellojpa;
 
-import com.example.jpaprogramming.hellojpa.domain3.Item;
-import com.example.jpaprogramming.hellojpa.domain3.Movie;
+import com.example.jpaprogramming.hellojpa.domain.Items.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,18 +21,11 @@ public class JpaMain {
 
         try {
 
-            Movie movie = new Movie();
-            movie.setDirector("directory1");
-            movie.setActor("actor1");
-            movie.setName("JPA");
-            movie.setPrice(50000);
-            em.persist(movie);
-
-            em.flush();
-            em.clear();
-
-            Item findItem = em.find(Item.class, movie.getId());
-            System.out.println("findItem : "+findItem);
+            Book book = new Book();
+            book.setArtist("작가");
+            book.setIsbn("12312312312");
+            book.setName("JPA");
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {

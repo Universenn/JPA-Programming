@@ -1,5 +1,6 @@
 package com.example.jpaprogramming.hellojpa.domain;
 
+import com.example.jpaprogramming.hellojpa.domain.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Category {
+public class Category extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "CATEGORY_ID")
@@ -28,11 +29,5 @@ public class Category {
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "CATEGORY_ITEM",
-            joinColumns = @JoinColumn(name = "CATEGORY_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
-    )
-    private List<Item> items = new ArrayList<>();
 
 }
