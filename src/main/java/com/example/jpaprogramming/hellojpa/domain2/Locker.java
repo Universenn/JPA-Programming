@@ -19,8 +19,8 @@ public class Locker {
     @Column(name = "LOCKERNAME")
     private String lockerName;
 
-    @OneToOne(mappedBy = "locker")
-    private Member member;
+//    @OneToOne(mappedBy = "locker")
+//    private Member member;
 
     public Locker(String lockerName) {
         this.lockerName = lockerName;
