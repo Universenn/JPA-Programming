@@ -1,5 +1,8 @@
 package com.example.jpaprogramming.hellojpa;
 
+import com.example.jpaprogramming.hellojpa.domain.Address;
+import com.example.jpaprogramming.hellojpa.domain.Member;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,6 +21,17 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Address oldAddress = new Address("city", "street", "0000000000");
+            Member member1 = new Member();
+            member1.setName("juwan");
+            member1.setHomeAddress(oldAddress);
+            em.persist(member1);
+
+            Address newAddress = new Address(oldAddress.getCity(), oldAddress.getStreet(), oldAddress.getZipcode());
+            Member member2 = new Member();
+            member2.setName("juwan");
+            member2.setHomeAddress(newAddress);
+            em.persist(member2);
 
             tx.commit();
         } catch (Exception e) {

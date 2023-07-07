@@ -6,16 +6,19 @@
 
 
 <!--        domain-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Delivery</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Category</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.CategoryItem</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Items.Album</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Items.Book</class>-->
-<!--        <class>com.example.jpaprogramming.hellojpa.domain.Items.Movie</class>-->
+        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Delivery</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Category</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.CategoryItem</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Items.Album</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Items.Book</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Items.Movie</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Address</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.Period</class>
+
 
 <!--        domain2-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain2.Member</class>-->
@@ -29,8 +32,8 @@
 <!--        <class>com.example.jpaprogramming.hellojpa.domain3.Item</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain3.Movie</class>-->
 
-        <class>com.example.jpaprogramming.hellojpa.domian4.Parent</class>
-        <class>com.example.jpaprogramming.hellojpa.domian4.Child</class>
+<!--        <class>com.example.jpaprogramming.hellojpa.domian4.Parent</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domian4.Child</class>-->
 
         <properties>
             <!-- 필수 속성 -->
@@ -40,6 +43,7 @@
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/> mysql, oracle... sql문에 맞는 방언을 찾아 넣어준다.-->
+
             <!-- 옵션 -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

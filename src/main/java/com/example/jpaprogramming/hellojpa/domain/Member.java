@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -26,7 +27,7 @@ public class Member extends BaseEntity {
 
     // 주소 Address
     @Embedded
-    private Address address;
+    private Address homeAddress;
 
     @Embedded
     @AttributeOverrides({
