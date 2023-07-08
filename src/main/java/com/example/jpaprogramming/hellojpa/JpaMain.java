@@ -1,15 +1,9 @@
 package com.example.jpaprogramming.hellojpa;
 
-import com.example.jpaprogramming.hellojpa.domain.Address;
-import com.example.jpaprogramming.hellojpa.domain.AddressEntity;
-import com.example.jpaprogramming.hellojpa.domain.Member;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
-import java.util.Set;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -24,19 +18,19 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Address oldAddress = new Address("city", "street", "0000000000");
-            Member member1 = new Member();
-            member1.setName("juwan");
-            member1.setHomeAddress(oldAddress);
-            member1.getFavoriteFoods().add("치킨");
-            member1.getFavoriteFoods().add("족발");
-            member1.getAddressesHistory().add(new AddressEntity("new city1", "street", "0000000000"));
-            member1.getAddressesHistory().add(new AddressEntity("new city3", "street", "0000000000"));
-            member1.getAddressesHistory().add(new AddressEntity("new city4", "street", "0000000000"));
-            em.persist(member1);
-
-            em.flush();
-            em.clear();
+//            Address oldAddress = new Address("city", "street", "0000000000");
+//            Member member1 = new Member();
+//            member1.setName("juwan");
+//            member1.setHomeAddress(oldAddress);
+//            member1.getFavoriteFoods().add("치킨");
+//            member1.getFavoriteFoods().add("족발");
+//            member1.getAddressesHistory().add(new AddressEntity("new city1", "street", "0000000000"));
+//            member1.getAddressesHistory().add(new AddressEntity("new city3", "street", "0000000000"));
+//            member1.getAddressesHistory().add(new AddressEntity("new city4", "street", "0000000000"));
+//            em.persist(member1);
+//
+//            em.flush();
+//            em.clear();
 //
 //            Member findMember = em.find(Member.class, member1.getId());
 //

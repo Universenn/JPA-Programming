@@ -16,9 +16,9 @@
         <class>com.example.jpaprogramming.hellojpa.domain.Items.Album</class>
         <class>com.example.jpaprogramming.hellojpa.domain.Items.Book</class>
         <class>com.example.jpaprogramming.hellojpa.domain.Items.Movie</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Address</class>
+        <class>com.example.jpaprogramming.hellojpa.domain5.Address</class>
         <class>com.example.jpaprogramming.hellojpa.domain.Period</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.AddressEntity</class>
+        <class>com.example.jpaprogramming.hellojpa.domain5.AddressEntity</class>
 
 
 <!--        domain2-->
