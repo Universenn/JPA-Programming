@@ -18,6 +18,7 @@
         <class>com.example.jpaprogramming.hellojpa.domain.Items.Movie</class>
         <class>com.example.jpaprogramming.hellojpa.domain.Address</class>
         <class>com.example.jpaprogramming.hellojpa.domain.Period</class>
+        <class>com.example.jpaprogramming.hellojpa.domain.AddressEntity</class>
 
 
 <!--        domain2-->

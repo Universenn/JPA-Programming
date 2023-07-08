@@ -36,11 +36,10 @@ public class Member extends BaseEntity {
     @Column(name = "FOOD_NAME")
     private Set<String> favoriteFoods = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(name = "ADDRESS", joinColumns =
-        @JoinColumn(name = "MEMBER_ID")
-    )
-    private List<Address> addressesHistory = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "MEMBER_ID")
+    private List<AddressEntity> addressesHistory = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "member")
