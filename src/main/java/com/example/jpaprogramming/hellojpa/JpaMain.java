@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
+import java.util.Set;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -25,13 +27,49 @@ public class JpaMain {
             Member member1 = new Member();
             member1.setName("juwan");
             member1.setHomeAddress(oldAddress);
+            member1.getFavoriteFoods().add("치킨");
+            member1.getFavoriteFoods().add("족발");
+            member1.getAddressesHistory().add(new Address("new city1", "street", "0000000000"));
+            member1.getAddressesHistory().add(new Address("new city3", "street", "0000000000"));
+            member1.getAddressesHistory().add(new Address("new city4", "street", "0000000000"));
             em.persist(member1);
 
             Address newAddress = new Address(oldAddress.getCity(), oldAddress.getStreet(), oldAddress.getZipcode());
             Member member2 = new Member();
-            member2.setName("juwan");
+            member2.setName("yeezi");
             member2.setHomeAddress(newAddress);
+            member2.getFavoriteFoods().add("돼지고기");
+            member2.getFavoriteFoods().add("소고기");
+            member2.getAddressesHistory().add(new Address("new city2", "street", "0000000000"));
             em.persist(member2);
+
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class, member1.getId());
+
+            // 수정
+            // 치킨 -> 피자 수정(삭제 해야 함)
+            // String 은 수정이 안되기 때문에 삭제 후 생성해야한다
+            findMember.getFavoriteFoods().remove("치킨");
+            findMember.getFavoriteFoods().add("피자");
+
+            // net city -> old city 수정
+            findMember.getAddressesHistory().remove(new Address("new city1", "street", "0000000000"));
+            findMember.getAddressesHistory().add(new Address("old city", "street", "0000000000"));
+
+            // 컬렉션은 지연로딩
+            findMember.setHomeAddress(new Address("inchen", "street", "0000000000"));
+            Set<String> favoriteFoods = findMember.getFavoriteFoods();
+            for (String favoriteFood : favoriteFoods) {
+                System.out.println("favoriteFood : "+favoriteFood);
+            }
+
+            List<Address> addressesHistory = findMember.getAddressesHistory();
+            for (Address address : addressesHistory) {
+                System.out.println("address : "+address.getCity());
+            }
+
 
             tx.commit();
         } catch (Exception e) {

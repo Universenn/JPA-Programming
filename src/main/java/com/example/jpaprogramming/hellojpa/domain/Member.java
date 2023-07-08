@@ -29,16 +29,19 @@ public class Member extends BaseEntity {
     @Embedded
     private Address homeAddress;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "city",
-                    column = @Column(name = "WORK_CITY")),
-            @AttributeOverride(name = "street",
-                    column = @Column(name = "WORK_street")),
-            @AttributeOverride(name = "zipcode",
-                    column = @Column(name = "WORK_zipcode")),
-    })
-    private Address workAddress;
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOOD", joinColumns =
+        @JoinColumn(name = "MEMBER_ID")
+    )
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS", joinColumns =
+        @JoinColumn(name = "MEMBER_ID")
+    )
+    private List<Address> addressesHistory = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
