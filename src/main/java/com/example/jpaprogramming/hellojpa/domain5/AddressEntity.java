@@ -1,4 +1,4 @@
-package com.example.jpaprogramming.hellojpa.domain;
+package com.example.jpaprogramming.hellojpa.domain5;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.example.jpaprogramming.hellojpa.domain;
+package com.example.jpaprogramming.hellojpa.domain5;
 
 public class ValueMain {
     public static void main(String[] args) {
