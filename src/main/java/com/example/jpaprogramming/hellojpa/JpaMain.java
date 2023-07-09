@@ -1,9 +1,12 @@
 package com.example.jpaprogramming.hellojpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import com.example.jpaprogramming.hellojpa.jpql.Address;
+import com.example.jpaprogramming.hellojpa.jpql.Member;
+import com.example.jpaprogramming.hellojpa.jpql.MemberDto;
+import com.example.jpaprogramming.hellojpa.jpql.Team;
+
+import javax.persistence.*;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -18,43 +21,20 @@ public class JpaMain {
         tx.begin();
 
         try {
-//            Address oldAddress = new Address("city", "street", "0000000000");
-//            Member member1 = new Member();
-//            member1.setName("juwan");
-//            member1.setHomeAddress(oldAddress);
-//            member1.getFavoriteFoods().add("치킨");
-//            member1.getFavoriteFoods().add("족발");
-//            member1.getAddressesHistory().add(new AddressEntity("new city1", "street", "0000000000"));
-//            member1.getAddressesHistory().add(new AddressEntity("new city3", "street", "0000000000"));
-//            member1.getAddressesHistory().add(new AddressEntity("new city4", "street", "0000000000"));
-//            em.persist(member1);
+            Team team1 = new Team("Team1");
+            em.persist(team1);
 //
-//            em.flush();
-//            em.clear();
-//
-//            Member findMember = em.find(Member.class, member1.getId());
-//
-//            // 수정
-//            // 치킨 -> 피자 수정(삭제 해야 함)
-//            // String 은 수정이 안되기 때문에 삭제 후 생성해야한다
-//            findMember.getFavoriteFoods().remove("치킨");
-//            findMember.getFavoriteFoods().add("피자");
-//
-//            // net city -> old city 수정
-//            findMember.getAddressesHistory().remove(new Address("new city1", "street", "0000000000"));
-//            findMember.getAddressesHistory().add(new Address("old city", "street", "0000000000"));
-//
-//            // 컬렉션은 지연로딩
-//            findMember.setHomeAddress(new Address("inchen", "street", "0000000000"));
-//            Set<String> favoriteFoods = findMember.getFavoriteFoods();
-//            for (String favoriteFood : favoriteFoods) {
-//                System.out.println("favoriteFood : "+favoriteFood);
-//            }
-//
-//            List<Address> addressesHistory = findMember.getAddressesHistory();
-//            for (Address address : addressesHistory) {
-//                System.out.println("address : "+address.getCity());
-//            }
+            Member member1 = new Member("A", 25, team1);
+            em.persist(member1);
+
+//            em.createQuery("select o.address from Order o", Address.class).getResultList();
+//            List<Object[]> resultList = em.createQuery("select distinct m.username, m.age from Member m").getResultList();
+            List<MemberDto> resultList = em.createQuery("select new com.example.jpaprogramming.hellojpa.jpql.MemberDto(m.username, m.age) from Member m", MemberDto.class)
+                    .getResultList();
+
+            MemberDto memberDto = resultList.get(0);
+            System.out.println("memberDto.username = "+ memberDto.getUsername());
+            System.out.println("memberDto.age = "+ memberDto.getAge());
 
 
             tx.commit();

@@ -6,19 +6,19 @@
 
 
 <!--        domain-->
-        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Delivery</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Category</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.CategoryItem</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Items.Album</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Items.Book</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Items.Movie</class>
-        <class>com.example.jpaprogramming.hellojpa.domain5.Address</class>
-        <class>com.example.jpaprogramming.hellojpa.domain.Period</class>
-        <class>com.example.jpaprogramming.hellojpa.domain5.AddressEntity</class>
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Member</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Order</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.OrderItem</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Delivery</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Item</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Category</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.CategoryItem</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Items.Album</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Items.Book</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Items.Movie</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain5.Address</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain.Period</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain5.AddressEntity</class>-->
 
 
 <!--        domain2-->
@@ -33,8 +33,20 @@
 <!--        <class>com.example.jpaprogramming.hellojpa.domain3.Item</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domain3.Movie</class>-->
 
+<!--        domain4-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domian4.Parent</class>-->
 <!--        <class>com.example.jpaprogramming.hellojpa.domian4.Child</class>-->
+
+<!--        domain5-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain5.AddressEntity</class>-->
+<!--        <class>com.example.jpaprogramming.hellojpa.domain5.Member</class>-->
+
+<!--        jpql-->
+        <class>com.example.jpaprogramming.hellojpa.jpql.Team</class>
+        <class>com.example.jpaprogramming.hellojpa.jpql.Member</class>
+        <class>com.example.jpaprogramming.hellojpa.jpql.Order</class>
+        <class>com.example.jpaprogramming.hellojpa.jpql.Product</class>
+
 
         <properties>
             <!-- 필수 속성 -->
