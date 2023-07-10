@@ -1,11 +1,12 @@
 package com.example.jpaprogramming.hellojpa;
 
-import com.example.jpaprogramming.hellojpa.jpql.Address;
 import com.example.jpaprogramming.hellojpa.jpql.Member;
-import com.example.jpaprogramming.hellojpa.jpql.MemberDto;
 import com.example.jpaprogramming.hellojpa.jpql.Team;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class JpaMain {
@@ -23,23 +24,27 @@ public class JpaMain {
         try {
             Team team1 = new Team("Team1");
             em.persist(team1);
+            Team team2 = new Team("Team2");
+            em.persist(team2);
 
-            for (int i = 0; i < 100; i++) {
-                Member member = new Member("A"+i, 100-i, team1);
+            for (int i = 0; i < 3; i++) {
+                Member member = new Member("A"+i, i, team1);
                 em.persist(member);
             }
+
+            Member member2 = new Member("Team2", 80, team2);
+            em.persist(member2);
 
             em.flush();
             em.clear();
 
             System.out.println("-=--------------------------------------------------------------------------");
-            List<Member> resultList = em.createQuery("select m from Member m order by m.age desc", Member.class)
-                    .setFirstResult(1)
-                    .setMaxResults(10)
+            String query = "select m from Member m join m.team t where t.name = 'Team1'";
+            List<Member> resultList = em.createQuery(query, Member.class)
                     .getResultList();
             System.out.println("-=--------------------------------------------------------------------------");
 
-            System.out.println("result.size = "+ resultList.size());
+//            System.out.println("result.size = "+ resultList.size());
             for (Member member : resultList) {
                 System.out.println("member : "+member);
             }
