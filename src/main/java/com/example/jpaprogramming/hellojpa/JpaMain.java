@@ -23,20 +23,26 @@ public class JpaMain {
         try {
             Team team1 = new Team("Team1");
             em.persist(team1);
-//
-            Member member1 = new Member("A", 25, team1);
-            em.persist(member1);
 
-//            em.createQuery("select o.address from Order o", Address.class).getResultList();
-//            List<Object[]> resultList = em.createQuery("select distinct m.username, m.age from Member m").getResultList();
-            List<MemberDto> resultList = em.createQuery("select new com.example.jpaprogramming.hellojpa.jpql.MemberDto(m.username, m.age) from Member m", MemberDto.class)
+            for (int i = 0; i < 100; i++) {
+                Member member = new Member("A"+i, 100-i, team1);
+                em.persist(member);
+            }
+
+            em.flush();
+            em.clear();
+
+            System.out.println("-=--------------------------------------------------------------------------");
+            List<Member> resultList = em.createQuery("select m from Member m order by m.age desc", Member.class)
+                    .setFirstResult(1)
+                    .setMaxResults(10)
                     .getResultList();
+            System.out.println("-=--------------------------------------------------------------------------");
 
-            MemberDto memberDto = resultList.get(0);
-            System.out.println("memberDto.username = "+ memberDto.getUsername());
-            System.out.println("memberDto.age = "+ memberDto.getAge());
-
-
+            System.out.println("result.size = "+ resultList.size());
+            for (Member member : resultList) {
+                System.out.println("member : "+member);
+            }
             tx.commit();
         } catch (Exception e) {
             System.out.println("rollback");

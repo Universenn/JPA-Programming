@@ -55,6 +55,7 @@
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>-->
 <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/> mysql, oracle... sql문에 맞는 방언을 찾아 넣어준다.-->
 
             <!-- 옵션 -->
