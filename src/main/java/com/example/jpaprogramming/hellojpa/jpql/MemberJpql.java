@@ -11,6 +11,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "MemberJpql")
+@NamedQuery(
+        name = "MemberJpql.findByUsername",
+        query = "select m from MemberJpql m where m.username =:username "
+)
 public class MemberJpql {
     @Id @GeneratedValue
     private Long id;

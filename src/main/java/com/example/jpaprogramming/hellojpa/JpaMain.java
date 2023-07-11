@@ -40,29 +40,14 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            System.out.println("-=--------------------------------------------------------------------------");
-            // 다대일, 일대일 페치 조인(fetch join)
-//            String query = "select m from MemberJpql m";
-//            String query = "select m from MemberJpql m join fetch m.team";
-
-//            String query = "select t from TeamJpql t join fetch t.memberJpql";
-//            String query = "select t from TeamJpql t join fetch t.memberJpql where t.name = 'team1'";
-            String query = "select t from TeamJpql t";
-
-            List<TeamJpql> resultList = em.createQuery(query, TeamJpql.class)
-                    .setFirstResult(0)
-                    .setMaxResults(2)
+            List<MemberJpql> resultList = em.createNamedQuery("MemberJpql.findByUsername", MemberJpql.class)
+                    .setParameter("username", "member2")
                     .getResultList();
 
-            System.out.println("resultList size : " + resultList.size());
-
-            for (TeamJpql teamJpql : resultList) {
-                System.out.println("team "+teamJpql.getName()+ ", member.size : "+teamJpql.getMemberJpql().size());
-                for (MemberJpql members :  teamJpql.getMemberJpql()) {
-                    System.out.println(" --> members = "+ members);
-
-                }
+            for (MemberJpql memberJpql : resultList) {
+                System.out.println("member = "+memberJpql);
             }
+
             tx.commit();
         } catch (Exception e) {
             System.out.println("rollback");
