@@ -42,8 +42,8 @@
 <!--        <class>com.example.jpaprogramming.hellojpa.domain5.Member</class>-->
 
 <!--        jpql-->
-        <class>com.example.jpaprogramming.hellojpa.jpql.Team</class>
-        <class>com.example.jpaprogramming.hellojpa.jpql.Member</class>
+        <class>com.example.jpaprogramming.hellojpa.jpql.TeamJpql</class>
+        <class>com.example.jpaprogramming.hellojpa.jpql.MemberJpql</class>
         <class>com.example.jpaprogramming.hellojpa.jpql.Order</class>
         <class>com.example.jpaprogramming.hellojpa.jpql.Product</class>
 
@@ -63,8 +63,10 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
 
+            <!--            배치사이즈 설정 100 -->
+            <property name="hibernate.default_batch_fetch_size" value="100"/>
             <!--            쿼리문 10개 가 모이면 한번에 보내라 -->
-            <property name="hibernate.jdbc.batch_size" value="10"/>
+<!--            <property name="hibernate.jdbc.batch_size" value="10"/>-->
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>

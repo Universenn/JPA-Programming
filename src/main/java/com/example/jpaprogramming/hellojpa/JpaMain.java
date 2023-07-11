@@ -1,8 +1,8 @@
 package com.example.jpaprogramming.hellojpa;
 
-import com.example.jpaprogramming.hellojpa.jpql.Member;
+import com.example.jpaprogramming.hellojpa.jpql.MemberJpql;
 import com.example.jpaprogramming.hellojpa.jpql.MemberType;
-import com.example.jpaprogramming.hellojpa.jpql.Team;
+import com.example.jpaprogramming.hellojpa.jpql.TeamJpql;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,62 +23,46 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team1 = new Team("Team1");
+            TeamJpql team1 = new TeamJpql("Team1");
             em.persist(team1);
-//            Team team2 = new Team("Team2");
-//            em.persist(team2);
+            TeamJpql team2 = new TeamJpql("Team2");
+            em.persist(team2);
+            TeamJpql team3 = new TeamJpql("Team3");
+            em.persist(team3);
 
-//            for (int i = 0; i < 20; i++) {
-//                Member member = new Member("A"+i, i,MemberType.USER, team1);
-//                em.persist(member);
-//            }
-            Member member1 = new Member(25, MemberType.USER, team1);
-            Member member2 = new Member("member2",26,MemberType.USER, team1);
-            Member member3 = new Member(27, MemberType.USER, team1);
-            Member member4 = new Member("      member4        ",28, MemberType.USER, team1);
+            MemberJpql member1 = new MemberJpql("member1",25, MemberType.USER, team1);
+            MemberJpql member2 = new MemberJpql("member2",26,MemberType.USER, team1);
+            MemberJpql member3 = new MemberJpql("member3",27, MemberType.USER, team2);
             em.persist(member1);
             em.persist(member2);
             em.persist(member3);
-            em.persist(member4);
-
-//            Member member2 = new Member("Team2", 80, MemberType.ADMIN, team2);
-//            em.persist(member2);
 
             em.flush();
             em.clear();
 
             System.out.println("-=--------------------------------------------------------------------------");
-//            String query = "select m.username, 'HELLO', TRUE from Member m where m.type = :userType   ";
-//            String query = "select coalesce(m.username, '이름 없는 회원') from Member m";
-//            String query = "select nullif(m.username, 'member2') from Member m";
-//            String query = "select trim(substring(m.username, 0, 3)) from Member m";
-//            String query = "select trim(m.username) from Member m";
-//            String query = "select length(m.username) from Member m";
-//            String query = "select locate('e', m.username) from Member m";
-            String query = "select size(t.member) from Team t";
+            // 다대일, 일대일 페치 조인(fetch join)
+//            String query = "select m from MemberJpql m";
+//            String query = "select m from MemberJpql m join fetch m.team";
 
-            List<Integer> resultList = em.createQuery(query, Integer.class)
+//            String query = "select t from TeamJpql t join fetch t.memberJpql";
+//            String query = "select t from TeamJpql t join fetch t.memberJpql where t.name = 'team1'";
+            String query = "select t from TeamJpql t";
+
+            List<TeamJpql> resultList = em.createQuery(query, TeamJpql.class)
+                    .setFirstResult(0)
+                    .setMaxResults(2)
                     .getResultList();
 
-            for (Integer s : resultList) {
-                System.out.println("s : "+s);
-            }
-//            List<Object[]> resultList = em.createQuery(query)
-////                    .setParameter("userType", com.example.jpaprogramming.hellojpa.jpql.MemberType.USER)
-//                    .setParameter("userType", MemberType.USER)
-//                    .getResultList();
-//            for (Object[] objects : resultList) {
-//                System.out.println("object : "+objects[0]);
-//                System.out.println("object : "+objects[1]);
-//                System.out.println("object : "+objects[2]);
-//            }
-//            List<Member> resultList = em.createQuery("select m from Member m where exists (select t from Team t where t.name = 'Team1')", Member.class).getResultList();
-            System.out.println("-=--------------------------------------------------------------------------");
+            System.out.println("resultList size : " + resultList.size());
 
-//            System.out.println("result.size = "+ resultList.size());
-//            for (Member member : resultList) {
-//                System.out.println("member : "+member);
-//            }
+            for (TeamJpql teamJpql : resultList) {
+                System.out.println("team "+teamJpql.getName()+ ", member.size : "+teamJpql.getMemberJpql().size());
+                for (MemberJpql members :  teamJpql.getMemberJpql()) {
+                    System.out.println(" --> members = "+ members);
+
+                }
+            }
             tx.commit();
         } catch (Exception e) {
             System.out.println("rollback");
