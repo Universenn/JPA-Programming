@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -32,21 +31,37 @@ public class JpaMain {
 
             MemberJpql member1 = new MemberJpql("member1",25, MemberType.USER, team1);
             MemberJpql member2 = new MemberJpql("member2",26,MemberType.USER, team1);
-            MemberJpql member3 = new MemberJpql("member3",27, MemberType.USER, team2);
+            MemberJpql member3 = new MemberJpql("member3",27, MemberType.USER, team1);
+            MemberJpql member4 = new MemberJpql("member4",28, MemberType.USER, team2);
+
             em.persist(member1);
             em.persist(member2);
             em.persist(member3);
+            em.persist(member4);
 
-            em.flush();
+            int resultCount = em.createQuery("" +
+                            "update MemberJpql m " +
+                            "set m.age = 20 " +
+                            "where m.age = :age")
+                    .setParameter("age",25)
+                    .executeUpdate();
+
             em.clear();
 
-            List<MemberJpql> resultList = em.createNamedQuery("MemberJpql.findByUsername", MemberJpql.class)
-                    .setParameter("username", "member2")
-                    .getResultList();
-
-            for (MemberJpql memberJpql : resultList) {
-                System.out.println("member = "+memberJpql);
-            }
+            System.out.println("result : " + resultCount);
+            MemberJpql findMember = em.find(MemberJpql.class, member4.getId());
+            System.out.println("findMember = "+findMember.getAge());
+//            System.out.println("resultCount = "+resultCount);
+//            System.out.println("member.age = "+member2.getAge());
+//            System.out.println("member.age = "+member3.getAge());
+//            System.out.println("member.age = "+member4.getAge());
+//            List<MemberJpql> resultList = em.createNamedQuery("MemberJpql.findByUsername", MemberJpql.class)
+//                    .setParameter("username", "member2")
+//                    .getResultList();
+//
+//            for (MemberJpql memberJpql : resultList) {
+//                System.out.println("member = "+memberJpql);
+//            }
 
             tx.commit();
         } catch (Exception e) {
